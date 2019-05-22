@@ -1,0 +1,101 @@
+расширения
+.pl - исполняемый
+.pm - libs
+.cgi - через web
+
+$ - scalar число/строка
+@ - array индексированный массик
+% - hash ассоциативный массив
+
+$a = 1;
+$array[0] = 'A';
+$hash{'myKeyName'} = 'ABC';
+
+%hash = ('key1' => 1, 'key2' => 5);
+
+
+$value = 'ABC';
+$ref = \$value;
+$refToArray = \@array;
+@arr1 = ($ref1, $ref2, ...);
+//анонимный массив
+$arrRef = [1, 'A', 'ABC'];
+//анонимный хеш
+$hashRef = {
+    'key1' => 1, 
+    'key2' => 15
+    };
+
+$arrRef ->[1] = 'Z';
+$hashRef->{'key1'} = 100;
+разименование массива
+@arr = @$arrRef;
+        @{$arrRef}
+%hash = %$hashRef;
+        %{arrRef}'
+
+
+////cpan.org
+//CONTABO
+
+//#!/usr/bin/perl
+=========================
+use strict;
+
+my $var = 1; --логальная ОВ
+
+our --глобальная ОВ depricated
+=================
+no srtict;
+
+use lib '....'; - реквайр либы
+use vars  ....;
+qw($var1 $a $b);
+
+eval(...);
+eval{...};try/catch
+
+===============================
+if() {
+
+} elseif() {
+
+} else {
+
+}
+================================
+unless() {
+
+} elseif() {
+
+} else {
+
+}
+================================
+
+$@ - ошибки времени исполнения
+$! - системные ошибки
+$_ - переменная по умолчанию
+@_ - массив переменных по умолчанию
+==================================
+    functions
+sub foo ()
+{
+    my($var1) = @_;
+    
+
+}
+
+sub foo ()
+{
+    my($var1, $var2, $var3) = @_;
+    my $var1 = shift;
+    my $var2 = .shift;
+    my $var1 = $_[0];
+    my $var2 = $_[1];
+}
+
+@myArr = qw(1 2 3 4);
+$var1 = @myArr;
+($var2) = @myArr;
+

@@ -1,0 +1,53 @@
+#! /usr/bin/perl -w
+
+use DBI;
+
+$host = 'dbi:mysql:database=user12;host=127.0.0.1';
+$user = 'user12';
+$pass = 'user12';
+$table = 'books';
+
+#to connect
+my $dbh = DBI->connect($host, $user, $pass);
+
+my $sql = qq{SET NAMES 'utf8';};
+$dbh->do($sql);
+
+#SELECT 
+$statementString = 'SELECT * FROM ' . $table;
+$sth = $dbh->prepare($statementString);
+#@dataArr = [1, 'Alex'];
+my $cnt = $sth->execute();
+#while($row = $sth->fetchrow_hashref()) {
+#    print $row[1];
+#    #push @data, $row; #push row to @data
+#}
+while(my @row = $sth->fetchrow_array()){
+    printf("%s\t%s\n",$row[0],$row[1],$row[2]);
+}  
+
+
+#print $dbh;
+=head
+# escape string
+$dbh->quote('INSERT INTO .....');
+
+#INSERT, UPDATE, DELETE
+$dbh->do('INSERT INTO .....');
+
+#SELECT 
+$statementString = 'SELECT * FROM table WHERE id = ? AND name = ?';
+$sth = $dbh->prepare($statementString);
+@dataArr = [1, 'Alex'];
+$cnt = $sth->execute(@dataArr);
+while($row = $sth->fetchrow_hashref()) {
+    print $row;
+    push @data, $row; #push row to @data
+}
+
+#close statement handler
+$sth->finish();
+
+#to disconnect
+$dbh->disconnect();
+=cut
